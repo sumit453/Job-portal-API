@@ -11,7 +11,7 @@ const jwtAuth = async (req, res, next) => {
 
   //2. check for the token availablity
   if (!token) {
-    return resizeBy.status(401).send("Unauthorized");
+    return res.status(401).send("Unauthorized");
   }
 
   //3. check the token validation
@@ -20,7 +20,7 @@ const jwtAuth = async (req, res, next) => {
     const blacklist = await TokenService.isBlacklisted(token);
     if (blacklist) {
       console.log("Token is invalid bcz it's blacklisted");
-      return resizeBy.status(401).send("Token is invalid");
+      return res.status(401).send("Token is invalid");
     }
 
     //ii. varify the token
@@ -31,7 +31,7 @@ const jwtAuth = async (req, res, next) => {
 
     // iv. check token is valid or not
     if (user.tokenVersion !== payload.tokenVersion) {
-      return resizeBy.status(401).send("Token is invalid please login again");
+      return res.status(401).send("Token is invalid please login again");
     }
 
     req.userId = payload.userId;
