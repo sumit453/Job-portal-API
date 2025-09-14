@@ -5,7 +5,7 @@ import ApplicationError from "../error-handeler/applicationError.js";
 
 const userRepository = new UserRepository();
 
-const jwtAuth = async (req, resizeBy, next) => {
+const jwtAuth = async (req, res, next) => {
   //1. look for the token
   const token = req.headers["authorization"];
 
